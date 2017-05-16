@@ -18,7 +18,7 @@ import java.awt.geom.Point2D;
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
 import Core.Condicao;
-import javax.vecmath.Point2f;
+//import javax.vecmath.Point2f;
 
 /**
  *
@@ -250,5 +250,12 @@ public class TransicaoArco extends Transicao{
             result1 = (-b + delta)/(2*a);
             result2 = (-b - delta)/(2*a);
         }
+    }
+    
+    private class Point2f{
+        private float x;
+        private float y;
+        
+        
     }
 }

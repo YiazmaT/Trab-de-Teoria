@@ -8,6 +8,7 @@ package lfa;
 import Panels.Automato;
 import Panels.Expressao;
 import Panels.Gramatica;
+import Panels.MaquinaDeNorma;
 import Panels.PanelMealy;
 import Panels.PanelMoore;
 import Panels.Sobre;
@@ -25,6 +26,7 @@ public class Main extends javax.swing.JFrame {
     private int numAutomato = 1;
     private int numMoore = 1;
     private int numMealy = 1;
+    private int numMaqNorma = 1;
     public Main() {
         initComponents();
     }
@@ -46,6 +48,7 @@ public class Main extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -94,6 +97,14 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem3);
+
+        jMenuItem6.setText("Máquina de Norma");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem6);
 
         jMenuBar1.add(jMenu1);
 
@@ -157,6 +168,12 @@ public class Main extends javax.swing.JFrame {
         jTabbedPane1.setTabComponentAt(i, new ButtonTabComponent(jTabbedPane1, "Mealy " + numMealy++));
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        int i = jTabbedPane1.getTabCount();
+        jTabbedPane1.add("Máquina de Norma "+numMaqNorma, new MaquinaDeNorma(this));
+        jTabbedPane1.setTabComponentAt(i, new ButtonTabComponent(jTabbedPane1, "Máquina de Norma " + numMealy++));
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
     public void criarAutomato(Core.AutomatoFinito automato){
         int i = jTabbedPane1.getTabCount();
         Automato tab = new Automato(this);
@@ -209,6 +226,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 
