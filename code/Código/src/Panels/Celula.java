@@ -65,7 +65,12 @@ public class Celula extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    private void setValores(int sinal, int num){
+        this.sinal = sinal;
+        this.num = num;
+        this.atualizar();
+    }
+    
     private void atualizar(){
         registradorTextField.setText(registrador + ":");
         valoresTextField.setText("("+sinal+" , "+num+")");

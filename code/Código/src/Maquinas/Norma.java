@@ -33,7 +33,14 @@ public class Norma {
     public boolean isZero(int valor){
         return valor == 0;
     }
+
+    public Variavel[] getPilha() {
+        return pilha;
+    }
     
+    public int getIndicePilha(){
+        return this.topoPilha.getMagnitude();
+    }
     /**
      * Adiciona o valor 1 na variavel indicada pelo endereço no parametro
      * @param variavel endereço da variavel a ser somada
