@@ -287,23 +287,25 @@ public class Norma {
         setarZero(c);
         add(c,a,d);
         mod(c,b,d,e,f);
-        if(variaveis[a].magnitude==0){
-            setar(b,1);
-            return true;
+        if(variaveis[c].magnitude==0){
+            setar(b,0);
+            return false;
         }
         setar(b,3);
-        while(menorQue(b,a,c,d,e)){
-            setarZero(f);
+        menorQue(b,a,c,d,e);
+        while(!(variaveis[c].sinal==0)){
+            setarZero(c);
             add(c,a,e);
             mod(c,b,d,e,f);
             if(variaveis[c].magnitude==0){
-                setar(b,1);
+                setar(b,0);
                 return false;
             }
             add(b);
             add(b);
+            menorQue(b,a,c,d,e);
         }
-        setar(b,0);
+        setar(b,1);
         return true;
     }
     
