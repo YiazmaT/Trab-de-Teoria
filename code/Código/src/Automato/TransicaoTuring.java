@@ -126,7 +126,8 @@ public class TransicaoTuring extends javax.swing.JDialog {
         direção = jButton1.isSelected()?"R":"L";
         if(leitura.length()==0)leitura= "λ";
         if(escrita.length()==0)escrita = "λ";
-        pai.AddTransicao(leitura, escrita,direção);
+        pai.addTransicao(leitura, escrita, direção);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     

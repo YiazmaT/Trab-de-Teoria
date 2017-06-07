@@ -27,6 +27,7 @@ public class Main extends javax.swing.JFrame {
     private int numMoore = 1;
     private int numMealy = 1;
     private int numMaqNorma = 1;
+    private int numMaqTuring = 1;
     public Main() {
         initComponents();
     }
@@ -49,6 +50,7 @@ public class Main extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -105,6 +107,14 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem6);
+
+        jMenuItem7.setText("Maquina de Turing");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem7);
 
         jMenuBar1.add(jMenu1);
 
@@ -171,8 +181,14 @@ public class Main extends javax.swing.JFrame {
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         int i = jTabbedPane1.getTabCount();
         jTabbedPane1.add("Máquina de Norma "+numMaqNorma, new MaquinaDeNorma(this));
-        jTabbedPane1.setTabComponentAt(i, new ButtonTabComponent(jTabbedPane1, "Máquina de Norma " + numMealy++));
+        jTabbedPane1.setTabComponentAt(i, new ButtonTabComponent(jTabbedPane1, "Máquina de Norma " + numMaqNorma++));
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        int i = jTabbedPane1.getTabCount();
+        jTabbedPane1.add("Máquina de Turing "+numMaqTuring, new Panels.PanelTuring(this));
+        jTabbedPane1.setTabComponentAt(i, new ButtonTabComponent(jTabbedPane1, "Máquina de Turing " + numMaqTuring++));
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     public void criarAutomato(Core.AutomatoFinito automato){
         int i = jTabbedPane1.getTabCount();
@@ -227,6 +243,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 
