@@ -40,16 +40,23 @@ public abstract class Transicao {
         this.source = source;
         this.target = target;
         condicoes = new ArrayList<>();
-        this.addCondicao(condicao, "");
+        this.addCondicao(condicao, "","");
     }
     
     public Transicao(Estado source, Estado target, String condicao, String saida){
         this.source = source;
         this.target = target;
         condicoes = new ArrayList<>();
-        this.addCondicao(condicao, saida);
+        this.addCondicao(condicao, saida,"");
     }
     
+    public Transicao(Estado source, Estado target, String condicao, String saida, String direção){
+        this.source = source;
+        this.target = target;
+        condicoes = new ArrayList<>();
+        this.addCondicao(condicao, saida,direção);
+    }
+       
     public Transicao(Transicao t, int tipo){
         this.source = t.source;
         this.target = t.target;
@@ -86,15 +93,15 @@ public abstract class Transicao {
     }
     
     public void addCondicao(String condicao){
-        addCondicao(condicao,"");
+        addCondicao(condicao,"","");
         //if(!condicoes.contains(condicao))condicoes.add(condicao);
     }
     
-    public void addCondicao(String condicao, String saida){
+    public void addCondicao(String condicao, String saida,String direção){
         for(Condicao c : condicoes){
             if(c.getCondicao().equals(condicao))return;
         }
-        condicoes.add(new Condicao(condicao,saida));
+        condicoes.add(new Condicao(condicao,saida,direção));
     }
     public abstract void draw(Graphics2D g);
      

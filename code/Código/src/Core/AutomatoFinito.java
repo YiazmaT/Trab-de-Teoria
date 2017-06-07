@@ -114,6 +114,7 @@ public class AutomatoFinito implements ReconhecedorCadeia{
         
     }
     
+    
     public void addTransicao(int estado, int estadoDestino, String condicao, String saida){
         Estado e = estados.get(estado);
         if(condicao.startsWith("λ")){

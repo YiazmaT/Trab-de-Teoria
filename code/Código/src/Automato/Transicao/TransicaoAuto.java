@@ -33,7 +33,10 @@ public class TransicaoAuto extends Transicao {
         super(source,target,condicao,saida);
         this.tipo = TIPO_AUTO;
     }
-    
+    public TransicaoAuto(Estado source, Estado target, String condicao,String saida,String direção){
+        super(source,target,condicao,saida,direção);
+        this.tipo = TIPO_AUTO;
+    }
     @Override
     public void draw(Graphics2D g) {
         g.setColor(Color.black);
@@ -84,6 +87,7 @@ public class TransicaoAuto extends Transicao {
         for(Condicao c : condicoes){
             String s = c.getCondicao();
             if(c.getSaida().length() != 0)s = s + " : " + c.getSaida();
+            if(c.getDireção().length()!= 0)s = s + " : " + c.getSaida();
             g.drawChars(s.toCharArray(), 0, s.length(), centro.x - s.length()*4, centro.y + STEP*i);
             i++;
         }

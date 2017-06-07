@@ -39,6 +39,11 @@ public class TransicaoArco extends Transicao{
         this.tipo = tipo;
     }
 
+    public TransicaoArco(Estado source, Estado target, String condicao,int tipo,String saida,String direção) {
+        super(source, target, condicao,saida,direção);
+        this.tipo = tipo;
+    }
+    
     public TransicaoArco(Transicao t, int tipo) {
         super(t, tipo);
     }
@@ -167,6 +172,7 @@ public class TransicaoArco extends Transicao{
         for(Condicao c : condicoes){
             String s = c.getCondicao();
             if(c.getSaida().length() != 0)s = s + " : " + c.getSaida();
+            if(c.getDireção().length()!= 0)s = s + " : " + c.getSaida();
             g.drawChars(s.toCharArray(), 0, s.length(), centro.x - s.length()*4, centro.y + step*i);
             i++;
         }

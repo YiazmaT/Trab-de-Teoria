@@ -122,7 +122,7 @@ public class TransicaoMealy extends javax.swing.JDialog {
             this.dispose();
             return;
         }
-        pai.addTransicao(jFormattedTextField1.getText(),jTextField1.getText());
+        pai.addTransicao(jFormattedTextField1.getText(),jTextField1.getText(),"");
         this.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed

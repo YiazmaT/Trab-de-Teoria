@@ -106,22 +106,22 @@ public class ViewPanel extends JPanel {
             }
         }
 
-        public void addTrans(Estado source, Estado target, String parametro,String saida){
+        public void addTrans(Estado source, Estado target, String parametro,String saida,String direção){
             for(int i=trans.size()-1;i>=0;i--){
                 Transicao t = trans.get(i);
                 if(t.sameSourceTarget(source,target)){
-                    t.addCondicao(parametro,saida);
+                    t.addCondicao(parametro,saida,direção);
                     return;
                 }
                 if(t.opositeSourceTarget(source,target) && t.getTipo() == Transicao.TIPO_NORMAL){
                     trans.set(i, new TransicaoArco(t,Transicao.TIPO_CIMA));
-                    trans.add(new TransicaoArco(source,target,parametro,Transicao.TIPO_BAIXO,saida));
+                    trans.add(new TransicaoArco(source,target,parametro,Transicao.TIPO_BAIXO,saida,direção));
                     return;
                 }
                
             }
-            if(source != target)trans.add(new TransicaoReta(source,target,parametro,saida));
-            else trans.add(new TransicaoAuto(source,target,parametro,saida));
+            if(source != target)trans.add(new TransicaoReta(source,target,parametro,saida,direção));
+            else trans.add(new TransicaoAuto(source,target,parametro,saida,direção));
         }
         
         public void removerEntidade(int x, int y){
@@ -285,7 +285,7 @@ public class ViewPanel extends JPanel {
             Core.Estado e = estadosAutomato.get(i);
             for(Core.Transicao t : e.getTransicoes()){
                 String condicao = t.getCaracter()==null?"λ":t.getCaracter().toString();
-                addTrans(estados.get(i),estados.get(estadosAutomato.indexOf(t.getEstadoDestino())),condicao,"");
+                addTrans(estados.get(i),estados.get(estadosAutomato.indexOf(t.getEstadoDestino())),condicao,"","");
             }
         }
         this.repaint();

@@ -17,6 +17,7 @@ public class Transicao {
      */
     private String caracter;
     private String saida;
+    
     /**
      * index do estado destino
      */

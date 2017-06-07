@@ -639,12 +639,16 @@ public class Automato extends javax.swing.JPanel {
     private javax.swing.JScrollPane scrollPaneImage;
     // End of variables declaration//GEN-END:variables
 
-    public void addTransicao(String cond,String saida){
-        if(cond.length() > 0){
+    public void AddTransicao(String cond,String saida){
+        addTransicao(cond, saida, "");
+    }
+    
+    public void addTransicao(String leitura,String escrita,String direção){
+        if(leitura.length() > 0){
             Estado s = view.getEstadoColidido(view.transSource.x,view.transSource.y);
             Estado t = view.getEstadoColidido(view.transTarget.x, view.transTarget.y);
             
-            view.addTrans(s,t, cond,saida);
+            view.addTrans(s,t, leitura,escrita,direção);
             repintar();
             
         }
