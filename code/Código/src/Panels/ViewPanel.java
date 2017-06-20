@@ -14,6 +14,7 @@ import Automato.Transicao.TransicaoArco;
 import Automato.Transicao.TransicaoAuto;
 import Automato.Transicao.TransicaoReta;
 import Core.AutomatoFinito;
+import Core.Turing;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -246,6 +247,25 @@ public class ViewPanel extends JPanel {
             return false;
         }
 
+        public void montarTuring(Turing turing) {
+            turing.clear();
+            ArrayList<Transicao> copia = (ArrayList<Transicao>) trans.clone();
+            for(Estado e : estados){
+                turing.addEstado(e.isFinal());
+            }
+            for(int i=0;i<estados.size();i++){
+                Estado e = estados.get(i);
+                for(int j=copia.size()-1;j>=0;j--){
+                    Transicao t = copia.get(j);
+                    if(t.isSource(e)){
+                        turing.addTransicao(i,estados.indexOf(t.getTarget()),t.getCondicoes());
+                        copia.remove(j);
+                    }
+                }
+                if(e.isInicial())turing.setInicial(i);
+            }
+        }   
+        
         public void montarAutomato(AutomatoFinito automato) {
             automato.clear();
             ArrayList<Transicao> copia = (ArrayList<Transicao>) trans.clone();
@@ -290,4 +310,6 @@ public class ViewPanel extends JPanel {
         }
         this.repaint();
     }
+
+    
 }

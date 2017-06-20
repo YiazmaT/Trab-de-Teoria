@@ -199,6 +199,11 @@ public class Gramatica implements ReconhecedorCadeia{
         naoTerminais.set(0, novoInicial);
     }
 
+    @Override
+    public String getSaida() {
+        return "";
+    }
+
    
 
     

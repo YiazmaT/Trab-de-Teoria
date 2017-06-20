@@ -17,11 +17,18 @@ public class Transicao {
      */
     private String caracter;
     private String saida;
-    
+    private int direção;
     /**
      * index do estado destino
      */
     private Estado estadoDestino;
+    
+    public Transicao(Character leitura,Character escrita, Estado estadoDestino, int direção){
+        this.caracter = leitura==null?"":leitura.toString();
+        this.estadoDestino = estadoDestino;
+        this.direção = direção;
+        this.saida = escrita==null?"":escrita.toString();
+    }
     
     public Transicao(Character caracter, Estado estadoDestino){
         this.caracter = caracter==null?"":caracter.toString();
@@ -84,6 +91,10 @@ public class Transicao {
     public String getTransicao(){
         if(caracter.contains("|"))return "("+caracter+")";
         return caracter;
+    }
+    
+    public int getDireção(){
+        return direção;
     }
     
     public String concat(String trans) {

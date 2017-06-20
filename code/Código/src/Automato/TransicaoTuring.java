@@ -123,7 +123,8 @@ public class TransicaoTuring extends javax.swing.JDialog {
         String direção;
         leitura = jTextField1.getText();
         escrita = jTextField2.getText();
-        direção = jButton1.isSelected()?"R":"L";
+        if(jRadioButton1.isSelected())direção = "R";
+        else direção = "L";
         if(leitura.length()==0)leitura= "λ";
         if(escrita.length()==0)escrita = "λ";
         pai.addTransicao(leitura, escrita, direção);

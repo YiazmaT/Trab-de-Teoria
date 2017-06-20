@@ -5,26 +5,29 @@
  */
 package Panels;
 
-import Automato.Estado;
 import java.util.ArrayList;
-import java.util.Queue;
-import java.util.Stack;
 import javax.swing.JOptionPane;
+import javax.swing.JTextPane;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 /**
  *
  * @author mortz
  */
-public class ResultadoByStep extends javax.swing.JDialog {
+public class ResultadoByStepTuring extends javax.swing.JDialog {
 
     private ViewPanel view;
     private ViewPanel base;
     private String cadeiaLida = "";
     private ArrayList<Integer> caminho;
-    private ArrayList<Character> charLido;
+    private ArrayList<Integer> posLeitor;
+    private ArrayList<String> estadosFita;
     private int estadoSelecionado;
     private int instante=0;
-    public ResultadoByStep(java.awt.Frame parent, boolean modal,ViewPanel base,ArrayList<Integer> caminho, ArrayList<Character> charLido) {
+    
+    public ResultadoByStepTuring(java.awt.Frame parent, boolean modal,ViewPanel base,ArrayList<Integer> caminho, ArrayList<Integer> posLeitor, ArrayList<String> estadoFita) {
         super(parent, modal);
         initComponents();
         view = (ViewPanel)jPanel1;
@@ -34,7 +37,8 @@ public class ResultadoByStep extends javax.swing.JDialog {
         view.trans = base.trans;
         
         this.caminho = caminho;
-        this.charLido = charLido;
+        this.posLeitor = posLeitor;
+        this.estadosFita = estadoFita;
         estadoSelecionado= caminho.get(0);
         caminho.remove(0);
         view.estados.get(estadoSelecionado).setSelecionado(true);
@@ -43,6 +47,11 @@ public class ResultadoByStep extends javax.swing.JDialog {
         jScrollPane1.revalidate(); 
         view.cleanImage();
         view.repaint();
+        jTextPane1.setContentType("text/html");
+        atualizarFita(estadosFita.get(0), posLeitor.get(0));
+        estadosFita.remove(0);
+        posLeitor.remove(0);
+        jTextPane1.repaint();
     }
 
     /**
@@ -58,11 +67,11 @@ public class ResultadoByStep extends javax.swing.JDialog {
         jPanel1 = new ViewPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Exibição estado por estado");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -96,9 +105,9 @@ public class ResultadoByStep extends javax.swing.JDialog {
             }
         });
 
-        jTextField1.setEditable(false);
+        jLabel1.setText("Fita:");
 
-        jLabel1.setText("Cadeia Reconhecida: ");
+        jScrollPane2.setViewportView(jTextPane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,8 +123,8 @@ public class ResultadoByStep extends javax.swing.JDialog {
                         .addComponent(jButton2))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -123,11 +132,11 @@ public class ResultadoByStep extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -143,29 +152,29 @@ public class ResultadoByStep extends javax.swing.JDialog {
         }else{
             view.estados.get(estadoSelecionado).setSelecionado(false);
             estadoSelecionado = caminho.get(instante);
-            Character leitura = charLido.get(instante);
+            String estadoFita = estadosFita.get(instante);
+            int indexLeitura = posLeitor.get(instante);
             view.estados.get(estadoSelecionado).setSelecionado(true);
             instante++;
-            if(leitura!=null){
-                cadeiaLida = cadeiaLida + leitura.toString();
-                jTextField1.setText(cadeiaLida);
-            }
+            
+            atualizarFita(estadoFita,indexLeitura);
+            
             view.cleanImage();
             view.repaint();
             jScrollPane1.repaint();
+            jTextPane1.repaint();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        view.estados.get(estadoSelecionado).setSelecionado(false);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        for(Estado e : view.estados){
-            e.setSelecionado(false);
-        }
+        view.estados.get(estadoSelecionado).setSelecionado(false);
     }//GEN-LAST:event_formWindowClosed
-    
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -174,6 +183,35 @@ public class ResultadoByStep extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
+
+    private void atualizarFita(String estadoFita, int indexLeitura) {
+        String fita;
+//        if(indexLeitura < 0 || indexLeitura >= estadoFita.length())fita = estadoFita;
+//        else{
+//            fita = "<html>" + estadoFita.substring(0, indexLeitura) + "<u>" + estadoFita.substring(indexLeitura,indexLeitura+1) + "</u>";
+//            if(indexLeitura+1==estadoFita.length())fita+="</html>";
+//            else fita+= estadoFita.substring(indexLeitura+1) + "</html>";
+//        }
+        fita = "<html>";
+        if(indexLeitura<0){
+            fita+="<u>_</u>";
+            for(int i=indexLeitura+1;i<0;i++)fita+=" ";
+            fita+=estadoFita;
+        }
+        else if(indexLeitura<estadoFita.length()){
+            fita+=estadoFita.substring(0,indexLeitura);
+            fita+= "<u>" + estadoFita.substring(indexLeitura, indexLeitura+1) + "</u>";
+            fita+=estadoFita.substring(indexLeitura+1);
+        }
+        else{
+            fita+=estadoFita;
+            for(int i=estadoFita.length();i<indexLeitura;i++)fita+=" ";
+            fita+="<u>_</u>";
+        }
+        fita+="</html>";
+        jTextPane1.setText(fita);
+    }
 }

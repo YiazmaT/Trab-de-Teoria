@@ -111,7 +111,7 @@ public class TransicaoReta extends Transicao {
         for(Condicao c : condicoes){
             String s = c.getCondicao();
             if(c.getSaida().length() != 0)s = s + " : " + c.getSaida();
-            if(c.getDireção().length()!= 0)s = s + " : " + c.getSaida();
+            if(c.getDireção().length()!= 0)s = s + " : " + c.getDireção();
             g.drawChars(s.toCharArray(), 0, s.length(), centro.x - s.length()*4, centro.y + STEP*i);
             i++;
         }

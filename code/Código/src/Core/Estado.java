@@ -56,6 +56,10 @@ public class Estado {
         transicoes.add(new Transicao(condicao,estadoDestino,saida));
     }
     
+    public void addTransicao(Estado estadoDestino, Character leitura, Character escrita, int direção){
+        transicoes.add(new Transicao(leitura,escrita,estadoDestino,direção));
+    }
+    
     public boolean isFinal() {
         return terminal;
     }

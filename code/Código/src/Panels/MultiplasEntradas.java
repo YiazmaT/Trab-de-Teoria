@@ -136,16 +136,12 @@ public class MultiplasEntradas extends javax.swing.JDialog {
                 }
             }
             reconhecedor.resetar();
-            if(possuiSaida == false){
-                if(reconhecedor.verificar(ptf.getCadeia())){
-                    ptf.setBackgroundTextField(Color.green);
-                }else{
-                    ptf.setBackgroundTextField(Color.red);
-                }
+            if(reconhecedor.verificar(ptf.getCadeia())){
+                ptf.setBackgroundTextField(Color.green);
             }else{
-                reconhecedor.verificar(ptf.getCadeia());
-                ptf.setSaida(((Core.AutomatoFinito)reconhecedor).getSaida());
+                ptf.setBackgroundTextField(Color.red);
             }
+            if(possuiSaida)ptf.setSaida(reconhecedor.getSaida());
         }
         if(erro)JOptionPane.showMessageDialog(this, "Não é permitido entrada com um caracter maiusculo");
     }//GEN-LAST:event_jButton1ActionPerformed

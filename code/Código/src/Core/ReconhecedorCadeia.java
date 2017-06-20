@@ -27,4 +27,6 @@ public interface ReconhecedorCadeia{
      */
     public abstract void resetar();
 
+    public String getSaida();
+
 }
