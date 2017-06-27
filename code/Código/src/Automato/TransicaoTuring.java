@@ -127,7 +127,9 @@ public class TransicaoTuring extends javax.swing.JDialog {
         else direção = "L";
         if(leitura.length()==0)leitura= "λ";
         if(escrita.length()==0)escrita = "λ";
-        pai.addTransicao(leitura, escrita, direção);
+        if(leitura.length()==1 && escrita.length()==1){
+            pai.addTransicao(leitura, escrita, direção);
+        }
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -115,10 +115,12 @@ public class TransicaoArco extends Transicao{
         }
         
         for(Condicao c : condicoes){
-            String s = c.getCondicao() + " : " + c.getSaida();
+            String s = c.getCondicao();
+            if(c.getSaida().length() != 0)s = s + " : " + c.getSaida();
+            if(c.getDireção().length()!= 0)s = s + " : " + c.getDireção();
             if(clique.getX() > centroX - s.length()*4 && clique.getX() < centroX + s.length()*4){
                 if(clique.getY() < centroY + step*i + 10 && clique.getY() > centroY + step*i - 10 ){
-                    condicoes.remove(s);
+                    condicoes.remove(c);
                     return true;
                 }
             }

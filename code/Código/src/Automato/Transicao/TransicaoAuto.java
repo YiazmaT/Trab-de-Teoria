@@ -57,10 +57,11 @@ public class TransicaoAuto extends Transicao {
         int i = INICIAL;
         for(Condicao c : condicoes){
             String s = c.getCondicao();
-            if(c.getSaida() != "")s = s + " : " + c.getSaida();
+            if(c.getSaida().length() != 0)s = s + " : " + c.getSaida();
+            if(c.getDireção().length()!= 0)s = s + " : " + c.getDireção();
             if(x > centroX - s.length()*4 && x < centroX + s.length()*4){
                 if(y < centroY + STEP*i + 10 && y > centroY + STEP*i - 10 ){
-                    condicoes.remove(s);
+                    condicoes.remove(c);
                     return true;
                 }
             }
@@ -73,7 +74,7 @@ public class TransicaoAuto extends Transicao {
     @Override
     protected int colideComTransicao(int x, int y) {
         x = x - (source.getX());
-        y = y - (source.getY() - source.getRay());
+        y = y - (source.getY());
         float d = Math.abs(x*x+y*y-source.getRay() * source.getRay());
         if(d < DELTA_COLISAO)return REMOVE_TRANSICAO;
         return NAO_REMOVE;
