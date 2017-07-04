@@ -15,45 +15,51 @@ public class Transicao {
      * Caracter que deve ser lido para ocorrer a transição
      * Caso a transição seja vazia, a variavel será nula
      */
-    private String caracter;
-    private String saida;
-    private int direção;
+    private String[] caracter;
+    private String[] saida;
+    private int[] direção;
     /**
      * index do estado destino
      */
     private Estado estadoDestino;
     
+    public void init(int tam){
+        caracter = new String[tam];
+        saida = new String[tam];
+        direção = new int[tam];
+    }
+    
     public Transicao(Character leitura,Character escrita, Estado estadoDestino, int direção){
-        this.caracter = leitura==null?"":leitura.toString();
+        this.caracter[0] = leitura==null?"":leitura.toString();
         this.estadoDestino = estadoDestino;
-        this.direção = direção;
-        this.saida = escrita==null?"":escrita.toString();
+        this.direção[0] = direção;
+        this.saida[0] = escrita==null?"":escrita.toString();
     }
     
     public Transicao(Character caracter, Estado estadoDestino){
-        this.caracter = caracter==null?"":caracter.toString();
+        this.caracter[0] = caracter==null?"":caracter.toString();
         this.estadoDestino = estadoDestino;
     }
     
     public Transicao(Character caracter, Estado estadoDestino, String saida){
-        this.caracter = caracter==null?"":caracter.toString();;
+        this.caracter[0] = caracter==null?"":caracter.toString();;
         this.estadoDestino = estadoDestino;
-        this.saida = saida.equals("λ")?"":saida;
+        this.saida[0] = saida.equals("λ")?"":saida;
     }
 
     public Transicao(String transicao, Estado estadoDestino) {
         this.estadoDestino = estadoDestino;
-        this.caracter = transicao;
+        this.caracter[0] = transicao;
     }
     
     public Character getCaracter(){
-        return caracter.length()==0?null:caracter.charAt(0);
+        return getCaracter(0);
     }
     public Estado getEstadoDestino(){
         return estadoDestino;
     }
     public String getSaida(){
-        return saida;
+        return getSaida(0)+"";
     }
     
     public void setEstadoDestino(Estado destino){
@@ -84,17 +90,17 @@ public class Transicao {
      * @return 
      */
     public int incremento() {
-        if(caracter.length()==0)return 0;
+        if(caracter[0].length()==0)return 0;
         return 1;
     }
     
     public String getTransicao(){
-        if(caracter.contains("|"))return "("+caracter+")";
-        return caracter;
+        if(caracter[0].contains("|"))return "("+caracter+")";
+        return caracter[0];
     }
     
     public int getDireção(){
-        return direção;
+        return direção[0];
     }
     
     public String concat(String trans) {
@@ -102,7 +108,19 @@ public class Transicao {
     }
 
     public void setTransicao(String transicao) {
-        this.caracter = transicao;
+        this.caracter[0] = transicao;
+    }
+
+    public char getCaracter(int i) {
+        return caracter[i].length()==0?null:caracter[i].charAt(0);
+    }
+
+    public char getSaida(int i) {
+        return saida[i].charAt(0);
+    }
+
+    public int getDireção(int i) {
+        return direção[i];
     }
     
     

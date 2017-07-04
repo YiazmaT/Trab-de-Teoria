@@ -38,7 +38,7 @@ public class PanelTuring extends Automato{
             view.montarTuring(turing);
             String cadeia = JOptionPane.showInputDialog(getParent(),"Insira o conteudo inicial da fita: ");
             if(cadeia == null)return;
-            if(turing.verificar(cadeia)){
+            if(turing.verificar(new String[]{cadeia})){
                 JOptionPane.showMessageDialog(this.getParent(), "Cadeia aceita com fita: \n" + turing.getFita());
             }else{
                 JOptionPane.showMessageDialog(this.getParent(), "Cadeia não foi aceita com fita: \n" + turing.getFita());
@@ -56,12 +56,12 @@ public class PanelTuring extends Automato{
             view.montarTuring(turing);
             String cadeia = JOptionPane.showInputDialog(getParent(),"Insira o conteudo inicial da fita: ");
             if(cadeia == null)return;
-            if(turing.verificar(cadeia)){
-                ResultadoByStepTuring resultado = new ResultadoByStepTuring(pai,true
-                        ,view,turing.getCaminho(),turing.getPosLeitor(),turing.getEstadosFita());
+            if(turing.verificar(new String[]{cadeia})){
+                //ResultadoByStepTuring resultado = new ResultadoByStepTuring(pai,true
+                        //,view,turing.getCaminho(),turing.getPosLeitor(),turing.getEstadosFita());
                 
-                resultado.setVisible(true);
-                resultado.toFront();
+                //resultado.setVisible(true);
+                //resultado.toFront();
             }
         }else{
             JOptionPane.showMessageDialog(this.getParent(),"O autômato parece não estar completo.\n"
@@ -74,9 +74,9 @@ public class PanelTuring extends Automato{
         Turing turing = new Turing();
         if(view.verificaEstados(needFinal)){
             view.montarTuring(turing);
-            MultiplasEntradas me = new MultiplasEntradas(pai, needFinal, turing, false, true);
-            me.toFront();
-            me.setVisible(true);
+            //MultiplasEntradas me = new MultiplasEntradas(pai, needFinal, turing, false, true);
+            //me.toFront();
+            //me.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(this.getParent(),"O autômato parece não estar completo.\n"
                     + "É necessário pelo menos 1 estado final e exatamente 1 estado inicial.");

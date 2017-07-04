@@ -136,7 +136,7 @@ public class MultiplasEntradas extends javax.swing.JDialog {
                 }
             }
             reconhecedor.resetar();
-            if(reconhecedor.verificar(ptf.getCadeia())){
+            if(reconhecedor.verificar(new String[]{ptf.getCadeia()})){
                 ptf.setBackgroundTextField(Color.green);
             }else{
                 ptf.setBackgroundTextField(Color.red);

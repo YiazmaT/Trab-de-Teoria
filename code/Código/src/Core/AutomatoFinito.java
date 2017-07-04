@@ -144,12 +144,12 @@ public class AutomatoFinito implements ReconhecedorCadeia{
      * @param entrada String que será verificada
      * @return boolean indicando se aceitou ou não a cadeia 
      */
-    public boolean verificar(String entrada){
+    public boolean verificar(String[] entrada){
         Estado estadoAtual = inicial;
         caminho.clear();
         charLidos.clear();
         caminho.add(estados.indexOf(estadoAtual));
-        if(proximoEstado(estadoAtual, entrada, 0)){
+        if(proximoEstado(estadoAtual, entrada[0], 0)){
             return true;
         }
         return false;

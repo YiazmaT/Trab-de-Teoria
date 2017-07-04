@@ -42,7 +42,7 @@ public class PanelMealy extends Automato{
             view.montarAutomato(automato);
             String cadeia = JOptionPane.showInputDialog(getParent(),"Insira a cadeia que irá ser reconhecida");
             if(cadeia == null)return;
-            automato.verificar(cadeia);
+            automato.verificar(new String[]{cadeia});
             JOptionPane.showMessageDialog(this.getParent(), "Saida: " + automato.getSaida());
         }else{
             JOptionPane.showMessageDialog(this.getParent(),"O autômato parece não estar completo.\n"

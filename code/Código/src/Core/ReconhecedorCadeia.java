@@ -19,7 +19,7 @@ public interface ReconhecedorCadeia{
      * @param cadeia cadeia a ser verificada
      * @return boolean indicando se a cadeia foi aceita
      */
-    public abstract boolean verificar(String cadeia);
+    public abstract boolean verificar(String[] cadeia);
     
     /**
      * Método usado para resetar os dados internos do reconhecedor para evitar

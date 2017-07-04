@@ -46,7 +46,7 @@ public class PanelMoore extends Automato{
             view.montarAutomato(automato);
             String cadeia = JOptionPane.showInputDialog(getParent(),"Insira a cadeia que irá ser reconhecida");
             if(cadeia == null)return;
-            automato.verificar(cadeia);
+            automato.verificar(new String[]{cadeia});
             JOptionPane.showMessageDialog(this.getParent(), "Saida: " + automato.getSaida());
             
         }else{

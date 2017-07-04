@@ -142,7 +142,7 @@ public class Gramatica extends javax.swing.JPanel {
         if(montarGramatica()){
             String input  = JOptionPane.showInputDialog(getParent(),"Insira a cadeia a ser verificada.");
             if(input == null)return;
-            if(gramatica.verificar(input)){
+            if(gramatica.verificar(new String[]{input})){
                 JOptionPane.showMessageDialog(getParent(),"A cadeia foi aceita");
             }else{
                 JOptionPane.showMessageDialog(getParent(), "A cadeia não foi aceita");
