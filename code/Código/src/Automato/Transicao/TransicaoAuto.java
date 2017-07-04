@@ -37,6 +37,11 @@ public class TransicaoAuto extends Transicao {
         super(source,target,condicao,saida,direção);
         this.tipo = TIPO_AUTO;
     }
+
+    public TransicaoAuto(Estado source, Estado target, String[] a, String[] b, String[] indices) {
+        super(source, target, a, b, indices);
+        this.tipo = TIPO_AUTO;
+    }
     @Override
     public void draw(Graphics2D g) {
         g.setColor(Color.black);
@@ -56,9 +61,7 @@ public class TransicaoAuto extends Transicao {
         
         int i = INICIAL;
         for(Condicao c : condicoes){
-            String s = c.getCondicao();
-            if(c.getSaida().length() != 0)s = s + " : " + c.getSaida();
-            if(c.getDireção().length()!= 0)s = s + " : " + c.getDireção();
+            String s = c.getDrawString();
             if(x > centroX - s.length()*4 && x < centroX + s.length()*4){
                 if(y < centroY + STEP*i + 10 && y > centroY + STEP*i - 10 ){
                     condicoes.remove(c);
@@ -86,9 +89,7 @@ public class TransicaoAuto extends Transicao {
         Font f = g.getFont();
         g.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 17));
         for(Condicao c : condicoes){
-            String s = c.getCondicao();
-            if(c.getSaida().length() != 0)s = s + " : " + c.getSaida();
-            if(c.getDireção().length()!= 0)s = s + " : " + c.getDireção();
+            String s = c.getDrawString();
             g.drawChars(s.toCharArray(), 0, s.length(), centro.x - s.length()*4, centro.y + STEP*i);
             i++;
         }

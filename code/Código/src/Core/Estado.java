@@ -119,5 +119,9 @@ public class Estado {
         transicoes.add(new Transicao(novaTransicao,estadoDestino));
     }
 
+    public void addTransicao(Estado estadoDestino, String[] leitura, String[] escrita, int[] direção) {
+        transicoes.add(new Transicao(estadoDestino,leitura,escrita,direção));
+    }
+
    
 }

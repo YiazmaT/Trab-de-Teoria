@@ -42,6 +42,11 @@ public class TransicaoReta extends Transicao {
         super(t);
         this.tipo = TIPO_NORMAL;
     }
+
+    public TransicaoReta(Estado source, Estado target, String[] a, String[] b, String[] indices) {
+        super(source, target, a, b, indices);
+        this.tipo = TIPO_NORMAL;
+    }
     
     @Override
     public void draw(Graphics2D g) {
@@ -109,9 +114,7 @@ public class TransicaoReta extends Transicao {
         Font prefont = g.getFont();
         g.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 17));
         for(Condicao c : condicoes){
-            String s = c.getCondicao();
-            if(c.getSaida().length() != 0)s = s + " : " + c.getSaida();
-            if(c.getDireção().length()!= 0)s = s + " : " + c.getDireção();
+            String s = c.getDrawString();
             g.drawChars(s.toCharArray(), 0, s.length(), centro.x - s.length()*4, centro.y + STEP*i);
             i++;
         }
@@ -133,9 +136,7 @@ public class TransicaoReta extends Transicao {
        
         int i = INICIAL;
         for(Condicao c : condicoes){
-            String s = c.getCondicao();
-            if(c.getSaida().length() != 0)s = s + " : " + c.getSaida();
-            if(c.getDireção().length()!= 0)s = s + " : " + c.getDireção();
+            String s = c.getDrawString();
             if(clique.getX() > centroX - s.length()*4 && clique.getX() < centroX + s.length()*4){
                 if(clique.getY() < centroY + STEP*i + 10 && clique.getY() > centroY + STEP*i - 10 ){
                     condicoes.remove(c);

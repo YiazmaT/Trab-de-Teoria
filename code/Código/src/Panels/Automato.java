@@ -650,10 +650,17 @@ public class Automato extends javax.swing.JPanel {
             
             view.addTrans(s,t, leitura,escrita,direção);
             repintar();
-            
         }
     }
 
+    public void addTransicao(String[] a, String[] b, String[] indices) {
+        Estado s = view.getEstadoColidido(view.transSource.x,view.transSource.y);
+        Estado t = view.getEstadoColidido(view.transTarget.x, view.transTarget.y);
+            
+        view.addTrans(s,t, a,b,indices);
+        repintar();
+    }
+    
     public void editarLabel(String text) {
         if(text == null)view.entidadeSelecionada = null;
         else{
@@ -757,4 +764,6 @@ public class Automato extends javax.swing.JPanel {
                     + "É necessario pelo menos 1 estado final e exatamente 1 estado inicial.");
         }
     }
+
+    
 }

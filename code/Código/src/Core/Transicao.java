@@ -22,6 +22,13 @@ public class Transicao {
      * index do estado destino
      */
     private Estado estadoDestino;
+
+    public Transicao(Estado estadoDestino, String[] leitura, String[] escrita, int[] direção) {
+        this.estadoDestino = estadoDestino;
+        this.caracter = leitura;
+        this.saida = escrita;
+        this.direção = direção;
+    }
     
     public void init(int tam){
         caracter = new String[tam];

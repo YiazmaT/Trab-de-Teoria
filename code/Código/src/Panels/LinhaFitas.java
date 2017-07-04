@@ -17,14 +17,14 @@ public class LinhaFitas extends javax.swing.JPanel {
     public LinhaFitas() {
         initComponents();
     }
-    public char getA(){
-        return jTextField1.getText().charAt(0);
+    public String getA(){
+        return jTextField1.getText();
     }
-    public char getB(){
-        return jTextField2.getText().charAt(0);
+    public String getB(){
+        return jTextField2.getText();
     }
-    public int getDirection(){
-        return (1-jComboBox1.getSelectedIndex());
+    public String getDirection(){
+        return (String)(jComboBox1.getSelectedItem());
     }
     /**
      * This method is called from within the constructor to initialize the form.

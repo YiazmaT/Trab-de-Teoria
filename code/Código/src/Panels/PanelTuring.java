@@ -28,7 +28,7 @@ public class PanelTuring extends Automato{
 
     @Override
     protected void criarTransicao(Point point) {
-        new TransicaoTuring(pai,true,point,this);
+        new InputTuringNFitas(pai,true,this,n);
     }
    
     @Override

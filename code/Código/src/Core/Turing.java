@@ -123,15 +123,19 @@ public class Turing{
     public void addTransicao(int origem, int destino, ArrayList<Condicao> condicoes) {
         Estado e = estados.get(origem);
         for(Condicao condicao : condicoes){
-            Character leitura,escrita;
-            int direção;
-            if(condicao.getDireção() == "R")direção = 1;
-            else direção = -1;
-            if(condicao.getCondicao().startsWith("λ"))leitura = ' ';
-            else leitura = condicao.getCondicao().charAt(0);
-            if(condicao.getSaida().startsWith("λ"))escrita = ' ';
-            else escrita = condicao.getSaida().charAt(0);
-            e.addTransicao(estados.get(destino), leitura, escrita,direção);
+            String[] leitura,escrita;
+            String[] dir = condicao.getDireções();
+            int[] direção = new int[numFitas];
+            leitura = condicao.getCondicões();
+            escrita = condicao.getSaidas();
+            for(int i=0;i<dir.length;i++){
+                if(dir[i].equals("R"))direção[i]=1;
+                else if(dir[i].equals("L"))direção[i]=-1;
+                else if(dir[i].equals("S"))direção[i]=0;
+                if(leitura[i].equals("λ"))leitura[i] = " ";
+                if(escrita[i].equals("λ"))escrita[i] = " ";
+            }
+            e.addTransicao(estados.get(destino), leitura, escrita, direção);
         }
     }
 

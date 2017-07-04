@@ -56,7 +56,14 @@ public abstract class Transicao {
         condicoes = new ArrayList<>();
         this.addCondicao(condicao, saida,direção);
     }
-       
+     
+    public Transicao(Estado source, Estado target, String[] a, String[] b, String[] indices) {
+        this.source = source;
+        this.target = target;
+        condicoes = new ArrayList<>();
+        this.addCondicao(a,b,indices);
+    }
+    
     public Transicao(Transicao t, int tipo){
         this.source = t.source;
         this.target = t.target;
@@ -104,7 +111,15 @@ public abstract class Transicao {
         condicoes.add(new Condicao(condicao,saida,direção));
     }
     public abstract void draw(Graphics2D g);
-     
+    
+    public void addCondicao(String[] a, String[] b, String[] indices) {
+        Condicao nova = new Condicao(a,b,indices);
+        for(Condicao c: condicoes){
+            if(c.equals(nova))return;
+        }
+        condicoes.add(nova);
+    }
+    
     public int getTipo(){
          return tipo;
     }
@@ -121,6 +136,7 @@ public abstract class Transicao {
     protected abstract int colideComTransicao(int x,int y);
     
     protected abstract void drawString(Point centro, AffineTransform transform, Graphics2D g);
+    
     public int colide(int x,int y){
         if(colideComCond(x, y)){
             if(condicoes.isEmpty()){
@@ -129,4 +145,6 @@ public abstract class Transicao {
         }
         return colideComTransicao(x,y);
     }
+
+    
 }

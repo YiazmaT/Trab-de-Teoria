@@ -13,16 +13,16 @@ import lfa.Main;
  * @author YiazmaT
  */
 public class InputTuringNFitas extends java.awt.Dialog {
-    private Main pai;
+    private Automato pai;
     private int n;
     private LinhaFitas fitas[];
     /**
      * Creates new form InputTuringNFitas
      */
-    public InputTuringNFitas(java.awt.Frame parent, boolean modal, Main pai, int n) {
+    public InputTuringNFitas(java.awt.Frame parent, boolean modal, Automato pai, int n) {
         super(parent, modal);
         initComponents();
-        //this.pai = pai;
+        this.pai = pai;
         this.n = n;
         
                 GridLayout l = new GridLayout(n, 1);
@@ -34,6 +34,8 @@ public class InputTuringNFitas extends java.awt.Dialog {
             this.fitas[i] = f;
             jPanel1.add(f);
         }
+        this.setVisible(true);
+        this.toFront();
     }
 
     /**
@@ -107,16 +109,23 @@ public class InputTuringNFitas extends java.awt.Dialog {
     }//GEN-LAST:event_closeDialog
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int indices[] = new int[this.n];
-        char a[]= new char[n];
-        char b[]= new char[n];
+        String indices[] = new String[this.n];
+        String a[]= new String[n];
+        String b[]= new String[n];
         
         for(int i=0;i<n;i++){
             a[i] = fitas[i].getA();
             b[i] = fitas[i].getB();
             indices[i] = fitas[i].getDirection();
+            if(a[i].length()==0)a[i] = "λ";
+            if(b[i].length()==0)b[i] = "λ";
+            if(a[i].length()!=1 || b[i].length()!=1){
+                this.dispose();
+                return;
+            }
         }
-        
+        pai.addTransicao(a, b, indices);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
