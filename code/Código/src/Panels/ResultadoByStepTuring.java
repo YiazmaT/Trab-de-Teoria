@@ -5,6 +5,7 @@
  */
 package Panels;
 
+import java.awt.GridLayout;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
@@ -27,9 +28,21 @@ public class ResultadoByStepTuring extends javax.swing.JDialog {
     private int estadoSelecionado;
     private int instante=0;
     
-    public ResultadoByStepTuring(java.awt.Frame parent, boolean modal,ViewPanel base,ArrayList<Integer> caminho, ArrayList<Integer> posLeitor, ArrayList<String> estadoFita) {
+    private FitasNTuring fitas[]; 
+    
+    public ResultadoByStepTuring(java.awt.Frame parent, boolean modal,ViewPanel base,ArrayList<Integer> caminho, ArrayList<Integer> posLeitor, ArrayList<String> estadoFita, int n) {
         super(parent, modal);
         initComponents();
+        
+        //montando fitas
+        jPanel2.setLayout(new GridLayout(n, 1));
+        fitas = new FitasNTuring[n];
+        for(int i=0;i<n;i++){
+            FitasNTuring f = new FitasNTuring("vazio");
+            fitas[i] = f;
+            jPanel2.add(f);
+        }
+        
         view = (ViewPanel)jPanel1;
         this.base = base;
     
@@ -47,11 +60,11 @@ public class ResultadoByStepTuring extends javax.swing.JDialog {
         jScrollPane1.revalidate(); 
         view.cleanImage();
         view.repaint();
-        jTextPane1.setContentType("text/html");
-        atualizarFita(estadosFita.get(0), posLeitor.get(0));
+        //jTextPane1.setContentType("text/html");
+        //atualizarFita(estadosFita.get(0), posLeitor.get(0));
         estadosFita.remove(0);
         posLeitor.remove(0);
-        jTextPane1.repaint();
+        //jTextPane1.repaint();
     }
 
     /**
@@ -68,8 +81,8 @@ public class ResultadoByStepTuring extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -105,9 +118,20 @@ public class ResultadoByStepTuring extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setText("Fita:");
+        jLabel1.setText("Fitas:");
 
-        jScrollPane2.setViewportView(jTextPane1);
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 434, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 155, Short.MAX_VALUE)
+        );
+
+        jScrollPane3.setViewportView(jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -116,15 +140,15 @@ public class ResultadoByStepTuring extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -132,10 +156,10 @@ public class ResultadoByStepTuring extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -157,12 +181,12 @@ public class ResultadoByStepTuring extends javax.swing.JDialog {
             view.estados.get(estadoSelecionado).setSelecionado(true);
             instante++;
             
-            atualizarFita(estadoFita,indexLeitura);
+            //atualizarFita(estadoFita,indexLeitura);
             
             view.cleanImage();
             view.repaint();
             jScrollPane1.repaint();
-            jTextPane1.repaint();
+            //jTextPane1.repaint();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -182,11 +206,12 @@ public class ResultadoByStepTuring extends javax.swing.JDialog {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
 
+    /*
     private void atualizarFita(String estadoFita, int indexLeitura) {
         String fita;
 //        if(indexLeitura < 0 || indexLeitura >= estadoFita.length())fita = estadoFita;
@@ -214,4 +239,5 @@ public class ResultadoByStepTuring extends javax.swing.JDialog {
         fita+="</html>";
         jTextPane1.setText(fita);
     }
+*/
 }
