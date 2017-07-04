@@ -13,6 +13,7 @@ import Panels.PanelMealy;
 import Panels.PanelMoore;
 import Panels.Sobre;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
 /**
@@ -108,7 +109,7 @@ public class Main extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem6);
 
-        jMenuItem7.setText("Maquina de Turing");
+        jMenuItem7.setText("Máquina de Turing");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem7ActionPerformed(evt);
@@ -185,8 +186,9 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        int n = Integer.parseInt(JOptionPane.showInputDialog(null, "Entre com o número de fitas"));
         int i = jTabbedPane1.getTabCount();
-        jTabbedPane1.add("Máquina de Turing "+numMaqTuring, new Panels.PanelTuring(this));
+        jTabbedPane1.add("Máquina de Turing "+numMaqTuring, new Panels.PanelTuring(this, n));
         jTabbedPane1.setTabComponentAt(i, new ButtonTabComponent(jTabbedPane1, "Máquina de Turing " + numMaqTuring++));
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 

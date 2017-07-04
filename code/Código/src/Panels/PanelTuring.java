@@ -19,10 +19,11 @@ import lfa.Main;
  * @author Matheus Prachedes Batista
  */
 public class PanelTuring extends Automato{
-
-    public PanelTuring(Main pai) {
+    private int n;
+    public PanelTuring(Main pai, int n) {
         super(pai);
         needFinal = true;
+        this.n =n;
     }
 
     @Override
