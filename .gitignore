@@ -5,3 +5,4 @@ dist/
 nbdist/
 .nb-gradle/
 .sonar
+code/Código/nbproject/private/private.xml
