@@ -13,40 +13,49 @@ import Automato.Transicao.*;
  * @author Matheus Prachedes Batista
  */
 public class Condicao {
-    private String condicao;
-    private String saida;
-    private String direção;
+    private String[] condicao;
+    private String[] saida;
+    private String[] direção;
 
     public String getDireção() {
-        return direção;
+        return direção[0];
     }
 
     public void setDireção(String direção) {
-        this.direção = direção;
+        this.direção[0] = direção;
     }
 
+    public void init(int tam){
+        condicao = new String[tam];
+        saida = new String[tam];
+        direção = new String[tam];
+    }
+    
     public Condicao(String condicao, String saida, String direção) {
-        this.condicao = condicao;
-        this.saida = saida;
-        this.direção = direção;
+        init(1);
+        this.condicao[0] = condicao;
+        this.saida[0] = saida;
+        this.direção[0] = direção;
     }
     
     
     public Condicao(String condicao, String saida){
-        this.condicao = condicao;
-        this.saida = saida;
+        init(1);
+        this.condicao[0] = condicao;
+        this.saida[0] = saida;
     }
     
     public Condicao(String condicao){
-        this.condicao = condicao;
-        this.saida = "";
+        init(1);
+        this.condicao[0] = condicao;
+        this.saida[0] = "";
     }
     
     public String getCondicao(){
-        return condicao;
+        return condicao[0];
     }
     
     public String getSaida(){
-        return saida;
+        return saida[0];
     }
 }

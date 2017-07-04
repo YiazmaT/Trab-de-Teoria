@@ -66,8 +66,8 @@ public class Gramatica implements ReconhecedorCadeia{
         tamanhosAntigos.add(-1);
     }
     
-    public boolean verificar(String entrada){
-        if(recursao(entrada,String.valueOf(naoTerminais.get(0).getNaoTerminal()),0)){
+    public boolean verificar(String[] entrada){
+        if(recursao(entrada[0],String.valueOf(naoTerminais.get(0).getNaoTerminal()),0)){
             return true;
         }
         return false;

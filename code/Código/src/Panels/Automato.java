@@ -683,7 +683,7 @@ public class Automato extends javax.swing.JPanel {
             view.montarAutomato(automato);
             String cadeia = JOptionPane.showInputDialog(getParent(),"Insira a cadeia que irá ser reconhecida");
             if(cadeia == null)return;
-            if(automato.verificar(cadeia)){
+            if(automato.verificar(new String[]{cadeia})){
                 JOptionPane.showMessageDialog(this.getParent(), "A cadeia foi aceita");
             }else{
                 JOptionPane.showMessageDialog(getParent(), "A cadeia não foi aceita");
@@ -714,7 +714,7 @@ public class Automato extends javax.swing.JPanel {
             view.montarAutomato(automato);
             String cadeia = JOptionPane.showInputDialog(getParent(),"Insira a cadeia que irá ser reconhecida");
             if(cadeia == null)return;
-            if(automato.verificar(cadeia)){
+            if(automato.verificar(new String[]{cadeia})){
                 ArrayList<Integer> caminho = automato.getCaminho();
                 ArrayList<Character> charLido = automato.getCharLidos();
                 ResultadoByStep rbs = new ResultadoByStep(pai, true, view, caminho, charLido);
