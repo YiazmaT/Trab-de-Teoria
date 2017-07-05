@@ -12,6 +12,7 @@ import Core.Turing;
 import java.awt.Point;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import lfa.Main;
 
 /**
@@ -33,15 +34,15 @@ public class PanelTuring extends Automato{
    
     @Override
     protected void testeRapido(){
-        Turing turing = new Turing();
+        Turing turing = new Turing(n);
         if(view.verificaEstados(needFinal)){
             view.montarTuring(turing);
-            String cadeia = JOptionPane.showInputDialog(getParent(),"Insira o conteudo inicial da fita: ");
+            String[] cadeia = getFitas();
             if(cadeia == null)return;
-            if(turing.verificar(new String[]{cadeia})){
-                JOptionPane.showMessageDialog(this.getParent(), "Cadeia aceita com fita: \n" + turing.getFita());
+            if(turing.verificar(cadeia)){
+                mostrarSaida("A cadeia foi aceita com fitas: ", turing.getFita());
             }else{
-                JOptionPane.showMessageDialog(this.getParent(), "Cadeia não foi aceita com fita: \n" + turing.getFita());
+                mostrarSaida("Cadeia não foi aceita com fitas: ", turing.getFita());
             }
         }else{
             JOptionPane.showMessageDialog(this.getParent(),"O autômato parece não estar completo.\n"
@@ -51,17 +52,15 @@ public class PanelTuring extends Automato{
 
     @Override
     protected void testeEstadoPorEstado() {
-        Turing turing = new Turing();
+        Turing turing = new Turing(n);
         if(view.verificaEstados(needFinal)){
             view.montarTuring(turing);
-            String cadeia = JOptionPane.showInputDialog(getParent(),"Insira o conteudo inicial da fita: ");
+            String[] cadeia = getFitas();
             if(cadeia == null)return;
-            if(turing.verificar(new String[]{cadeia})){
-                //ResultadoByStepTuring resultado = new ResultadoByStepTuring(pai,true
-                        //,view,turing.getCaminho(),turing.getPosLeitor(),turing.getEstadosFita());
-                
-                //resultado.setVisible(true);
-                //resultado.toFront();
+            if(turing.verificar(cadeia)){
+                ResultadoByStepTuring resultado = new ResultadoByStepTuring(pai, true, view, turing.getCaminho(), turing.getPosLeitor(), turing.getEstadosFita(), n);
+                resultado.setVisible(true);
+                resultado.toFront();
             }
         }else{
             JOptionPane.showMessageDialog(this.getParent(),"O autômato parece não estar completo.\n"
@@ -71,7 +70,7 @@ public class PanelTuring extends Automato{
 
     @Override
     protected void testeMultiplos() {
-        Turing turing = new Turing();
+        Turing turing = new Turing(n);
         if(view.verificaEstados(needFinal)){
             view.montarTuring(turing);
             //MultiplasEntradas me = new MultiplasEntradas(pai, needFinal, turing, false, true);
@@ -81,6 +80,34 @@ public class PanelTuring extends Automato{
             JOptionPane.showMessageDialog(this.getParent(),"O autômato parece não estar completo.\n"
                     + "É necessário pelo menos 1 estado final e exatamente 1 estado inicial.");
         }
+    }
+
+    private String[] getFitas() {
+        JTextField[] entradas = new JTextField[n];
+        Object[] campos = new Object[n*2];
+        for(int i=0;i<n;i++){
+            entradas[i] = new JTextField();
+            campos[i*2] = "Fita " + i + ": ";
+            campos[i*2 + 1] = entradas[i];
+        }
+        if(JOptionPane.showConfirmDialog(pai, campos,"Entradas",JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION){
+            String[] fitas = new String[n];
+            for(int i=0;i<n;i++){
+                fitas[i] = entradas[i].getText();
+            }
+            return fitas;
+        }
+        return null;
+    }
+
+    private void mostrarSaida(String msg, String[] fita) {
+        Object[] campos = new Object[n*2+1];
+        campos[0] = msg;
+        for(int i=0;i<n;i++){
+            campos[(i*2)+1] = "Fita " + i + ':';
+            campos[(i*2)+2] = fita[i];
+        }
+        JOptionPane.showMessageDialog(pai, campos);
     }
     
     

@@ -62,7 +62,7 @@ public class TransicaoAuto extends Transicao {
         int i = INICIAL;
         for(Condicao c : condicoes){
             String s = c.getDrawString();
-            if(x > centroX - s.length()*4 && x < centroX + s.length()*4){
+            if(x > centroX - s.length()*4 && x < centroX + s.length()*6){
                 if(y < centroY + STEP*i + 10 && y > centroY + STEP*i - 10 ){
                     condicoes.remove(c);
                     return true;

@@ -19,9 +19,10 @@ public class Turing{
     private ArrayList<Integer[]> posLeitor;
     private ArrayList<String[]> estadosFita;
     private String[] saidaFita;
-    private int numFitas = 1;
-    public Turing(){
+    private int numFitas;
+    public Turing(int numFitas){
         init();
+        this.numFitas = numFitas;
     }
 
     

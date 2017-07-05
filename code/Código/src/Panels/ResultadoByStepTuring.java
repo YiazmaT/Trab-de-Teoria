@@ -23,14 +23,14 @@ public class ResultadoByStepTuring extends javax.swing.JDialog {
     private ViewPanel base;
     private String cadeiaLida = "";
     private ArrayList<Integer> caminho;
-    private ArrayList<Integer> posLeitor;
-    private ArrayList<String> estadosFita;
+    private ArrayList<Integer[]> posLeitor;
+    private ArrayList<String[]> estadosFita;
     private int estadoSelecionado;
     private int instante=0;
     
     private FitasNTuring fitas[]; 
     
-    public ResultadoByStepTuring(java.awt.Frame parent, boolean modal,ViewPanel base,ArrayList<Integer> caminho, ArrayList<Integer> posLeitor, ArrayList<String> estadoFita, int n) {
+    public ResultadoByStepTuring(java.awt.Frame parent, boolean modal,ViewPanel base,ArrayList<Integer> caminho, ArrayList<Integer[]> posLeitor, ArrayList<String[]> estadoFita, int n) {
         super(parent, modal);
         initComponents();
         
@@ -56,15 +56,13 @@ public class ResultadoByStepTuring extends javax.swing.JDialog {
         caminho.remove(0);
         view.estados.get(estadoSelecionado).setSelecionado(true);
         
-        view.setPreferredSize(base.getPreferredSize());
+        //view.setPreferredSize(base.getPreferredSize());
         jScrollPane1.revalidate(); 
         view.cleanImage();
         view.repaint();
-        //jTextPane1.setContentType("text/html");
-        //atualizarFita(estadosFita.get(0), posLeitor.get(0));
+        atualizarFitas(estadosFita.get(0), posLeitor.get(0));
         estadosFita.remove(0);
         posLeitor.remove(0);
-        //jTextPane1.repaint();
     }
 
     /**
@@ -176,12 +174,12 @@ public class ResultadoByStepTuring extends javax.swing.JDialog {
         }else{
             view.estados.get(estadoSelecionado).setSelecionado(false);
             estadoSelecionado = caminho.get(instante);
-            String estadoFita = estadosFita.get(instante);
-            int indexLeitura = posLeitor.get(instante);
+            String[] estadoFita = estadosFita.get(instante);
+            Integer[] indexLeitura = posLeitor.get(instante);
             view.estados.get(estadoSelecionado).setSelecionado(true);
             instante++;
             
-            //atualizarFita(estadoFita,indexLeitura);
+            atualizarFitas(estadoFita,indexLeitura);
             
             view.cleanImage();
             view.repaint();
@@ -211,8 +209,14 @@ public class ResultadoByStepTuring extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
 
-    /*
-    private void atualizarFita(String estadoFita, int indexLeitura) {
+    private void atualizarFitas(String[] estadoFita, Integer[] indexLeitura) {
+        for(int i=0;i<estadoFita.length;i++){
+            atualizarFita(estadoFita[i],indexLeitura[i],fitas[i]);
+        }
+    }
+
+    
+    private void atualizarFita(String estadoFita, int indexLeitura, FitasNTuring panelFita) {
         String fita;
 //        if(indexLeitura < 0 || indexLeitura >= estadoFita.length())fita = estadoFita;
 //        else{
@@ -237,7 +241,7 @@ public class ResultadoByStepTuring extends javax.swing.JDialog {
             fita+="<u>_</u>";
         }
         fita+="</html>";
-        jTextPane1.setText(fita);
+        panelFita.setFita(fita);
     }
-*/
+
 }

@@ -16,14 +16,15 @@ public class FitasNTuring extends javax.swing.JPanel {
      */
     public FitasNTuring(String fita) {
         initComponents();
-        this.jTextField1.setText(fita);
+        this.jTextPane1.setContentType("text/html");
+        this.jTextPane1.setText(fita);
     }
 
     public void setFita(String f){
-        this.jTextField1.setText(f);
+        this.jTextPane1.setText(f);
     }
     public String getFita(){
-        return this.jTextField1.getText();
+        return this.jTextPane1.getText();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,22 +35,28 @@ public class FitasNTuring extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
+
+        jScrollPane1.setViewportView(jTextPane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 }

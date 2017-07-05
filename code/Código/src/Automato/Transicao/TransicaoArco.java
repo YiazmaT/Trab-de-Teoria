@@ -123,7 +123,7 @@ public class TransicaoArco extends Transicao{
         
         for(Condicao c : condicoes){
             String s = c.getDrawString();
-            if(clique.getX() > centroX - s.length()*4 && clique.getX() < centroX + s.length()*4){
+            if(clique.getX() > centroX - s.length()*4 && clique.getX() < centroX + s.length()*6){
                 if(clique.getY() < centroY + step*i + 10 && clique.getY() > centroY + step*i - 10 ){
                     condicoes.remove(c);
                     return true;

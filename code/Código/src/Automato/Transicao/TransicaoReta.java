@@ -137,7 +137,7 @@ public class TransicaoReta extends Transicao {
         int i = INICIAL;
         for(Condicao c : condicoes){
             String s = c.getDrawString();
-            if(clique.getX() > centroX - s.length()*4 && clique.getX() < centroX + s.length()*4){
+            if(clique.getX() > centroX - s.length()*4 && clique.getX() < centroX + s.length()*6){
                 if(clique.getY() < centroY + STEP*i + 10 && clique.getY() > centroY + STEP*i - 10 ){
                     condicoes.remove(c);
                     return true;
