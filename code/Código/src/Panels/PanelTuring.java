@@ -73,9 +73,9 @@ public class PanelTuring extends Automato{
         Turing turing = new Turing(n);
         if(view.verificaEstados(needFinal)){
             view.montarTuring(turing);
-            //MultiplasEntradas me = new MultiplasEntradas(pai, needFinal, turing, false, true);
-            //me.toFront();
-            //me.setVisible(true);
+            MT_BigPanel m = new MT_BigPanel(pai, true, n, turing);
+            m.toFront();
+            m.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(this.getParent(),"O autômato parece não estar completo.\n"
                     + "É necessário pelo menos 1 estado final e exatamente 1 estado inicial.");
